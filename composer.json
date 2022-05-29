@@ -1,0 +1,14 @@
+{
+    "name": "hugandoro/idm_sipma",
+    "description": "Aplicativo de Seguimiento Integral a Plane de Mejoramiento y Auditorias",
+    "type": "project",
+    "authors": [
+        {
+            "name": "hugandoro",
+            "email": "hugandoro@gmail.com"
+        }
+    ],
+    "require": {
+        "firebase/php-jwt": "dev-master"
+    }
+}
