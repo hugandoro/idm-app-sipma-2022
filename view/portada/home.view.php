@@ -32,7 +32,7 @@
                 <!-- El form de logueo hace un llamado al controlador Auth con la accion/metodo Autenticar -->
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Ingreso contratistas | Registro planillas asistencias</h3>
+                        <h3 class="panel-title">Ingreso SIPMA | Seguimiento integral a planes de mejoramiento ( En prueba )</h3>
                     </div>
                     <div class="panel-body">
                         <form method="post" action="?c=Auth&a=Autenticar" role="login">

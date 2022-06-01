@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-sm-3">
         <center>
-            <picture><img src="/assets/img/logo_idm.png" class="img-fluid" width="100%"></picture>
+            <picture><img src="assets/img/logo_idm.png" class="img-fluid" width="100%"></picture>
         </center>
     </div>
 

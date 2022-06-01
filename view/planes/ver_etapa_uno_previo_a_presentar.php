@@ -17,7 +17,7 @@
                 <td style="width:60%">Control y evaluación</td>
                 <td rowspan="4" style="width:20%">
                     <center>
-                        <picture><img src="/assets/img/logo_idm.png" class="img-fluid" width="100%"></picture>
+                        <picture><img src="assets/img/logo_idm.png" class="img-fluid" width="100%"></picture>
                     </center>
                 </td>
             </tr>
