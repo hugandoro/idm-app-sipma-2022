@@ -114,7 +114,7 @@ class Plan
 		}
 	}
 
-	// Metodo para CERRAR el modo edicion de un plan
+	// Metodo para CERRAR un plan
 	public function Cerrar($data){
 		try{
 
@@ -126,7 +126,29 @@ class Plan
 			$this->pdo->prepare($sql)
 			     ->execute(
 				    array(
-						"Cerrada",
+						"Cerrado",
+                        $data->id //No se debe sobreescribir, se usa para ubicar el registro a modificar
+					)
+				);
+		} 
+		catch (Exception $e){
+			die($e->getMessage());
+		}
+	}
+
+	// Metodo para PRESENTAR un plan
+	public function Presentar($data){
+		try{
+
+			$sql = "UPDATE planes SET 
+						estado	= ?
+
+				    WHERE id = ?";
+
+			$this->pdo->prepare($sql)
+			     ->execute(
+				    array(
+						"Presentado",
                         $data->id //No se debe sobreescribir, se usa para ubicar el registro a modificar
 					)
 				);
@@ -162,20 +184,5 @@ class Plan
 		}
 	}
 
-	// Metodo para listar OBSERVACIONES vinculados a un PLAN
-	public function listarObservaciones($idPlan){
-		try{
-			$result = array();
-
-				$stm = $this->pdo->prepare("SELECT a.* FROM observaciones AS a INNER JOIN observacion_plan AS b ON a.id = b.observacion_identificacion WHERE b.plan_id = '$idPlan'");
-
-			$stm->execute();
-
-			return $stm->fetchAll(PDO::FETCH_OBJ);
-		}
-		catch(Exception $e){
-			die($e->getMessage());
-		}
-	}
 
 }

@@ -7,7 +7,7 @@ error_reporting(E_ALL ^ E_NOTICE);
 
 class PlanesController
 {
-    private $auth, $modelUsuario, $modelPlan;
+    private $auth, $modelUsuario, $modelPlan, $modelObservacion;
 
     // Metodo constructor
     public function __CONSTRUCT()
@@ -106,7 +106,7 @@ class PlanesController
         header('Location: index.php?c=Planes&a=Index&token=' . @$_GET['token']);
     }
 
-    // Metodo para cerrar una plan de su modo edicion (CERRAR PLAN)
+    // Metodo para cerrar una plan (CERRAR PLAN)
     public function cerrarPlan()
     {
         $plan = new Plan();
@@ -128,12 +128,43 @@ class PlanesController
         }
 
         // Obtiene los datos de las observaciones vinculadas al Plan
-        $listadoObservaciones = $this->modelPlan->listarObservaciones($_REQUEST['id']);
+        $listadoObservaciones = $this->modelObservacion->listarObservaciones($_REQUEST['id']);
 
         //Carga las vistas para presentar al usuario
         require_once 'view/header.view.php';
         require_once 'view/planes/navbar.view.php';
         require_once 'view/planes/ver_etapa_uno_previo_a_presentar.php';
+        require_once 'view/footer.view.php';
+    }
+
+    // Metodo para presentar una plan (PRESENTAR PLAN)
+    public function presentarPlan()
+    {
+        $plan = new Plan();
+
+        $plan->id = $_REQUEST['id'];
+        $this->modelPlan->Presentar($plan);
+
+        header('Location: index.php?c=Planes&a=Index&token=' . @$_GET['token']);
+    }
+
+    // Metodo que visualizar plan en su ETAPA UNO previo a suscribir
+    public function verEtapaDos()
+    {
+        $plan = new Plan();
+
+        // Valida si se recibe un ID - si existe es modo edicion y hace un llamado a obtener los datos del modelo
+        if (isset($_REQUEST['id'])) {
+            $plan = $this->modelPlan->Obtener($_REQUEST['id']);
+        }
+
+        // Obtiene los datos de las observaciones vinculadas al Plan
+        $listadoObservaciones = $this->modelObservacion->listarObservaciones($_REQUEST['id']);
+
+        //Carga las vistas para presentar al usuario
+        require_once 'view/header.view.php';
+        require_once 'view/planes/navbar.view.php';
+        require_once 'view/planes/ver_etapa_dos_previo_a_suscribir.php';
         require_once 'view/footer.view.php';
     }
 }

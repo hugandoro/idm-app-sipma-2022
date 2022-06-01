@@ -37,14 +37,12 @@
 
                     <td>
                         <!-- COLUMNA OPCIONES PLANILLAS -->
+
+                        <!-- ETAPA 1 - Editando el encabezado de la planilla -->
                         <?php if ($r->estado == 'Edicion') { ?>
                             <a href='?c=Planes&a=editarPlan&id=<?php echo $r->id; ?>&token=<?php echo @$_GET['token']; ?>'>
                                 <button class="btn btn-info btn-xs" name="btn-filtrar" id="btn-filtrar">Editar</button>
                             </a>
-
-                            <!--<a href='?c=Planillas&a=agregarAsistente&id=<?php echo $r->id; ?>&token=<?php echo @$_GET['token']; ?>'>
-                                <button class="btn btn-success btn-xs" name="btn-filtrar" id="btn-filtrar">Registrar</button>
-                            </a>-->
 
                             <a onclick="javascript:return confirm('¿ Seguro de REGISTRAR y pasar a la fase de OBSERVACIONES ? Despues de registrada solo se podra agregar observaciones del equipo auditor');" href='?c=Planes&a=cerrarPlan&id=<?php echo $r->id; ?>&token=<?php echo @$_GET['token']; ?>'>
                                 <button class="btn btn-warning btn-xs" name="btn-filtrar" id="btn-filtrar">Registrar</button>
@@ -55,7 +53,8 @@
                             </a>
                         <?php } ?>
 
-                        <?php if ($r->estado == 'Cerrada') { ?>
+                        <!-- ETAPA 2 - Agregando observaciones -->
+                        <?php if ($r->estado == 'Cerrado') { ?>
                             <a href='?c=Planes&a=verEtapaUno&id=<?php echo $r->id; ?>&token=<?php echo @$_GET['token']; ?>'>
                                 <button class="btn btn-success btn-xs" name="btn-filtrar" id="btn-filtrar">Vista previa</button>
                             </a>
@@ -64,8 +63,23 @@
                                 <button class="btn btn-info btn-xs" name="btn-filtrar" id="btn-filtrar">Agregar Hallazgo | NC | Observacion</button>
                             </a>
 
-                            <a href='?c=Planes&a=presentarPlan&id=<?php echo $r->id; ?>&token=<?php echo @$_GET['token']; ?>'>
+                            <a onclick="javascript:return confirm('¿ Seguro de PRESENTAR y pasar a la fase de RETROALIMENTACION DEL AUDITADO ? Despues de presentado solo se podran diligenciar retroalimentaciones por parte del auditado');" href='?c=Planes&a=presentarPlan&id=<?php echo $r->id; ?>&token=<?php echo @$_GET['token']; ?>'>
                                 <button class="btn btn-warning btn-xs" name="btn-filtrar" id="btn-filtrar">Presentar al auditado</button>
+                            </a>
+                        <?php } ?>
+
+                        <!-- ETAPA 3 - Retroalimentando sobre las observaciones -->
+                        <?php if ($r->estado == 'Presentado') { ?>
+                            <a href='?c=Planes&a=verEtapaDos&id=<?php echo $r->id; ?>&token=<?php echo @$_GET['token']; ?>'>
+                                <button class="btn btn-success btn-xs" name="btn-filtrar" id="btn-filtrar">Vista previa</button>
+                            </a>
+
+                            <a href='?c=Observaciones&a=retroalimentarObservacion&id=<?php echo $r->id; ?>&token=<?php echo @$_GET['token']; ?>'>
+                                <button class="btn btn-primary btn-xs" name="btn-filtrar" id="btn-filtrar">Retroalimentar Hallazgo | NC | Observacion</button>
+                            </a>
+
+                            <a onclick="javascript:return confirm('¿ Seguro de PRESENTAR y pasar a la fase de RETROALIMENTACION DEL AUDITADO ? Despues de presentado solo se podran diligenciar retroalimentaciones por parte del auditado');" href='?c=Planes&a=presentarPlan&id=<?php echo $r->id; ?>&token=<?php echo @$_GET['token']; ?>'>
+                                <button class="btn btn-warning btn-xs" name="btn-filtrar" id="btn-filtrar">Suscribir plan</button>
                             </a>
                         <?php } ?>
 
